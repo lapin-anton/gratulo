@@ -1,11 +1,17 @@
-package ru.lapinlisss.gratulo.model;
+package ru.lapinlisss.gratulo.model.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "event")
 public class Event {
@@ -18,13 +24,13 @@ public class Event {
     @JoinColumn(name = "account_id")
     private Account account;
 
-    @Column(name = "ev_date")
+    @Column(name = "event_date")
     private LocalDate eventDate;
 
     private String person;
 
     @ManyToOne
-    @JoinColumn(name = "ev_category_id")
+    @JoinColumn(name = "event_category_id")
     private EventCategory eventCategory;
 
 }

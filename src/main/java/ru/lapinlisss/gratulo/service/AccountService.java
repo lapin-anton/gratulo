@@ -3,7 +3,7 @@ package ru.lapinlisss.gratulo.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import ru.lapinlisss.gratulo.model.Account;
+import ru.lapinlisss.gratulo.model.entity.Account;
 import ru.lapinlisss.gratulo.repository.AccountRepository;
 
 import java.util.Optional;

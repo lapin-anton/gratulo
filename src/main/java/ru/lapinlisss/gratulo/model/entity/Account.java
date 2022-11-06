@@ -1,4 +1,4 @@
-package ru.lapinlisss.gratulo.model;
+package ru.lapinlisss.gratulo.model.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

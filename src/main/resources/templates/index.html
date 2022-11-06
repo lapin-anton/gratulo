@@ -40,7 +40,22 @@
                 </div>
             </nav>
             <div class="row">
-                <h1>Hi! My congratulations!</h1>
+                <table class="table">
+                    <tbody>
+                    <!--/*@thymesVar id="sessions" type="ru.job4j.cinema.model.Session"*/-->
+                    <tr th:each="ev: ${events}" align="center">
+                        <td>
+                            <span th:text="${ev.id}"></span>
+                        </td>
+                        <td>
+                            <span th:text="${ev.eventDate}"></span>
+                        </td>
+                        <td>
+                            <span th:text="${ev.person}"></span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </body>
