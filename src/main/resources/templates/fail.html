@@ -20,21 +20,20 @@
 <body>
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" th:href="@{/}">Cinema Service</a>
+        <a class="navbar-brand" th:href="@{/}">Gratulo</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link" th:href="@{/}">Главная</a>
-                <a class="nav-item nav-link" th:href="@{/formAddAccount}">Зарегистрироваться</a>
-                <!--/*@thymesVar id="user" type="ru.job4j.cinema.model.User"*/-->
-                <a class="nav-item nav-link" th:if="${account.name == 'Гость'}" th:href="@{/loginPage}">
-                    <span th:text="${account.name}"></span>
+                <a class="nav-item nav-link" th:href="@{/}">Main</a>
+                <a class="nav-item nav-link" th:href="@{/formAddEvent}">Add event</a>
+                <a class="nav-item nav-link" th:if="${account.login == 'Гость'}" th:href="@{/loginPage}">
+                    <span th:text="${account.login}"></span>
                     <span> | Войти</span>
                 </a>
-                <a class="nav-item nav-link" th:if="${account.name != 'Гость'}" th:href="@{/logout}">
-                    <span th:text="${account.name}"></span>
+                <a class="nav-item nav-link" th:if="${account.login != 'Гость'}" th:href="@{/logout}">
+                    <span th:text="${account.login}"></span>
                     <span> | Выйти</span>
                 </a>
             </div>

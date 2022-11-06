@@ -11,3 +11,13 @@ spring:
 
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+scheduling:
+  enabled: true
+
+telegram:
+  bot:
+    name: GratuloBot
+    token: 5693326064:AAEnVN2gbJ7VTTiNYCKbywa3XL1HYiJOmXw
+  chat:
+    id: -757393370
