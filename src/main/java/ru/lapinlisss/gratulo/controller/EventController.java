@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import ru.lapinlisss.gratulo.model.dto.EventCategoryDto;
 import ru.lapinlisss.gratulo.model.entity.Account;
@@ -29,8 +30,7 @@ public class EventController {
     public String addEvent(Model model, HttpSession session) {
         Account account = getAccount(session);
         model.addAttribute("account", account);
-        List<EventCategoryDto> eventCategoryDtos = eventCategoryService.findAll();
-        model.addAttribute("categories", eventCategoryDtos);
+        model.addAttribute("categories", eventCategoryService.findAll());
         model.addAttribute("event", new Event());
         return "addEvent";
     }
@@ -40,6 +40,23 @@ public class EventController {
         event.setAccount(getAccount(session));
         event.setEventCategory(eventCategoryService.findById(event.getEventCategory().getId()));
         eventService.add(event);
+        return "redirect:/";
+    }
+
+    @GetMapping("/formUpdateEvent/{eventId}")
+    public String formUpdatePost(Model model, @PathVariable("eventId") int id, HttpSession session) {
+        Account account = getAccount(session);
+        model.addAttribute("account", account);
+        model.addAttribute("event", eventService.findById((long) id));
+        model.addAttribute("categories", eventCategoryService.findAll());
+        return "updateEvent";
+    }
+
+    @PostMapping("/updateEvent")
+    public String updateEvent(@ModelAttribute Event event, HttpSession session) {
+        event.setAccount(getAccount(session));
+        event.setEventCategory(eventCategoryService.findById(event.getEventCategory().getId()));
+        eventService.update(event);
         return "redirect:/";
     }
 

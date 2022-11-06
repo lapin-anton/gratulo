@@ -30,4 +30,12 @@ public class EventService {
     public void add(Event event) {
         eventRepository.saveAndFlush(event);
     }
+
+    public void update(Event event) {
+        eventRepository.saveAndFlush(event);
+    }
+
+    public Event findById(Long id) {
+        return eventRepository.findById(id).orElse(null);
+    }
 }
