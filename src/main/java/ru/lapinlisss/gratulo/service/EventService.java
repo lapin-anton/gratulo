@@ -27,15 +27,15 @@ public class EventService {
         return rsl;
     }
 
-    public void add(Event event) {
-        eventRepository.saveAndFlush(event);
-    }
-
-    public void update(Event event) {
+    public void addOrUpdate(Event event) {
         eventRepository.saveAndFlush(event);
     }
 
     public Event findById(Long id) {
         return eventRepository.findById(id).orElse(null);
+    }
+
+    public void deleteById(long id) {
+        eventRepository.deleteById(id);
     }
 }

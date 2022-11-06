@@ -8,14 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import ru.lapinlisss.gratulo.model.dto.EventCategoryDto;
 import ru.lapinlisss.gratulo.model.entity.Account;
 import ru.lapinlisss.gratulo.model.entity.Event;
 import ru.lapinlisss.gratulo.service.EventCategoryService;
 import ru.lapinlisss.gratulo.service.EventService;
 
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
 @Slf4j
 @Controller
@@ -39,15 +37,15 @@ public class EventController {
     public String createEvent(@ModelAttribute Event event, HttpSession session) {
         event.setAccount(getAccount(session));
         event.setEventCategory(eventCategoryService.findById(event.getEventCategory().getId()));
-        eventService.add(event);
+        eventService.addOrUpdate(event);
         return "redirect:/";
     }
 
     @GetMapping("/formUpdateEvent/{eventId}")
-    public String formUpdatePost(Model model, @PathVariable("eventId") int id, HttpSession session) {
+    public String formUpdatePost(Model model, @PathVariable("eventId") long id, HttpSession session) {
         Account account = getAccount(session);
         model.addAttribute("account", account);
-        model.addAttribute("event", eventService.findById((long) id));
+        model.addAttribute("event", eventService.findById(id));
         model.addAttribute("categories", eventCategoryService.findAll());
         return "updateEvent";
     }
@@ -56,7 +54,13 @@ public class EventController {
     public String updateEvent(@ModelAttribute Event event, HttpSession session) {
         event.setAccount(getAccount(session));
         event.setEventCategory(eventCategoryService.findById(event.getEventCategory().getId()));
-        eventService.update(event);
+        eventService.addOrUpdate(event);
+        return "redirect:/";
+    }
+
+    @GetMapping("/deleteEvent/{eventId}")
+    public String deleteEvent(@PathVariable("eventId") long id) {
+        eventService.deleteById(id);
         return "redirect:/";
     }
 
