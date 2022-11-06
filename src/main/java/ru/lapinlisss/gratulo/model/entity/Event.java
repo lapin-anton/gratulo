@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -24,6 +25,7 @@ public class Event {
     @JoinColumn(name = "account_id")
     private Account account;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "event_date")
     private LocalDate eventDate;
 

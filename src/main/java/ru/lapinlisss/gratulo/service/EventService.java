@@ -26,4 +26,8 @@ public class EventService {
                 .collect(Collectors.toList());
         return rsl;
     }
+
+    public void add(Event event) {
+        eventRepository.saveAndFlush(event);
+    }
 }

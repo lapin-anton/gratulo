@@ -26,8 +26,8 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                        <a class="nav-item nav-link" th:href="@{/}">Главная</a>
-                        <!--/*@thymesVar id="user" type="ru.job4j.cinema.model.User"*/-->
+                        <a class="nav-item nav-link" th:href="@{/}">Main</a>
+                        <a class="nav-item nav-link" th:href="@{/formAddEvent}">Add event</a>
                         <a class="nav-item nav-link" th:if="${account.login == 'Гость'}" th:href="@{/loginPage}">
                             <span th:text="${account.login}"></span>
                             <span> | Войти</span>
@@ -41,9 +41,16 @@
             </nav>
             <div class="row">
                 <table class="table">
+                    <thead>
+                        <tr th:align="center">
+                            <td>id</td>
+                            <td>Date</td>
+                            <td>Causer</td>
+                            <td>Category</td>
+                        </tr>
+                    </thead>
                     <tbody>
-                    <!--/*@thymesVar id="sessions" type="ru.job4j.cinema.model.Session"*/-->
-                    <tr th:each="ev: ${events}" align="center">
+                    <tr th:each="ev: ${events}" th:align="center">
                         <td>
                             <span th:text="${ev.id}"></span>
                         </td>
@@ -52,6 +59,9 @@
                         </td>
                         <td>
                             <span th:text="${ev.person}"></span>
+                        </td>
+                        <td>
+                            <span th:text="${ev.eventCategory.name}"></span>
                         </td>
                     </tr>
                     </tbody>
