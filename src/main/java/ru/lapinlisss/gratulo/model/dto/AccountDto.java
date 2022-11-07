@@ -19,8 +19,6 @@ public class AccountDto {
 
     private String phone;
 
-    private String tgTag;
-
-    private String tgGroup;
+    private String tgId;
 
 }

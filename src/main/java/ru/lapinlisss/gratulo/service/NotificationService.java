@@ -24,9 +24,6 @@ public class NotificationService {
 
     private final EventRepository eventRepository;
 
-    @Value("${telegram.chat.id}")
-    private String chatId;
-
     @Scheduled(cron = "0 * * * * *")
     void execute() {
         List<EventDto> eventDtos = eventRepository.findAll().stream()
@@ -38,7 +35,7 @@ public class NotificationService {
                     && current.getMonth().equals(ev.getEventDate().getMonth())
                     && ev.getEventDate().getDayOfMonth() == current.getDayOfMonth()) {
                 String text = MessageUtil.generateMessage(ev);
-                telegramBot.sendMessage(chatId, text);
+                telegramBot.sendMessage(ev.getAccount().getTgId(), text);
             }
         }
     }

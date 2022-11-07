@@ -26,11 +26,8 @@ public class Account {
 
     private String phone;
 
-    @Column(name = "tg_tag")
-    private String tgTag;
-
-    @Column(name = "tg_group")
-    private String tgGroup;
+    @Column(name = "tg_id")
+    private String tgId;
 
     @OneToMany(mappedBy = "account")
     private List<Event> events;
